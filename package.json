@@ -1,0 +1,44 @@
+{
+  "name": "react-schemaorg",
+  "version": "0.1.0",
+  "displayName": "React: Schema.org",
+  "description": "Typed Schema.org JSON-LD in React",
+  "authors": [
+    {
+      "name": "Eyas Sharaiha",
+      "email": "eyas@google.com",
+      "url": "https://eyas.sh/"
+    }
+  ],
+  "files": [
+    "dist/gen/**/*"
+  ],
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "devDependencies": {
+    "@types/react": "^16.7.22",
+    "react": "^15.4.1",
+    "schema-dts": "^0.3.1",
+    "typescript": "^3.1.6"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "typescript": "^3.1.6",
+    "schema-dts": "^0.3.1"
+  },
+  "keywords": [
+    "react",
+    "jsonld",
+    "JSON-LD",
+    "typescript",
+    "schema.org",
+    "Semantic Web",
+    "semantic-web",
+    "Linked Data",
+    "linked-data"
+  ],
+  "homepage": "https://github.com/google/react-schemaorg#readme",
+  "bugs": "https://github.com/google/react-schemaorg/issues",
+  "repository": "github:google/react-schemaorg",
+  "license": "Apache-2.0"
+}

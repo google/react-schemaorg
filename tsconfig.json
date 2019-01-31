@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react",
+    "outDir": "./dist/",
+    "target": "es2015",
+    "sourceMap": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}
