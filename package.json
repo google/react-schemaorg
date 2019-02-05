@@ -11,7 +11,7 @@
     }
   ],
   "files": [
-    "dist/gen/**/*"
+    "dist/**/*"
   ],
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
