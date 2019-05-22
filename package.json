@@ -1,6 +1,6 @@
 {
   "name": "react-schemaorg",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "displayName": "React: Schema.org",
   "description": "Typed Schema.org JSON-LD in React",
   "authors": [
@@ -17,13 +17,13 @@
   "devDependencies": {
     "@types/react": "^16.7.22",
     "react": "^15.4.1",
-    "schema-dts": "^0.3.1",
-    "typescript": "^3.1.6"
+    "schema-dts": ">=0.4.0",
+    "typescript": ">=3.1.6"
   },
   "dependencies": {},
   "peerDependencies": {
-    "typescript": "^3.1.6",
-    "schema-dts": "^0.3.1"
+    "typescript": ">=3.1.6",
+    "schema-dts": ">=0.3.1"
   },
   "keywords": [
     "react",
