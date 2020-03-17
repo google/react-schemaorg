@@ -1,6 +1,6 @@
 {
   "name": "react-schemaorg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "React: Schema.org",
   "description": "Typed Schema.org JSON-LD in React",
   "authors": [
