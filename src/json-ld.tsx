@@ -77,6 +77,11 @@ const safeJsonLdReplacer: JsonReplacer = (() => {
     entities[t as keyof typeof entities] || t;
 
   return (_: string, value: JsonValue): JsonValue | undefined => {
+    // Omit null values.
+    if (value === null) {
+      return undefined;
+    }
+
     switch (typeof value) {
       case "object":
         return value; // JSON.stringify will recursively call replacer.
