@@ -34,6 +34,7 @@ import { Thing, WithContext } from "schema-dts";
  *     },
  *     knowsAbout: ["Compilers", "Computer Science"]
  *   }}
+ *   space={2}
  * />
  * ```
  */
