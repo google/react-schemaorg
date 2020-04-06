@@ -34,18 +34,21 @@ import { Thing, WithContext } from "schema-dts";
  *     },
  *     knowsAbout: ["Compilers", "Computer Science"]
  *   }}
+ *   space={2}
  * />
  * ```
  */
 export class JsonLd<T extends Thing> extends React.Component<{
   item: WithContext<T>;
+  /** Adds indentation, white space, and line break characters to JSON-LD output. {@link JSON.stringify} */
+  space?: string | number;
 }> {
   render() {
     return (
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(this.props.item, safeJsonLdReplacer)
+          __html: JSON.stringify(this.props.item, safeJsonLdReplacer, this.props.space)
         }}
       />
     );
