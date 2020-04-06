@@ -39,13 +39,14 @@ import { Thing, WithContext } from "schema-dts";
  */
 export class JsonLd<T extends Thing> extends React.Component<{
   item: WithContext<T>;
+  space?: string | number;
 }> {
   render() {
     return (
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(this.props.item, safeJsonLdReplacer)
+          __html: JSON.stringify(this.props.item, safeJsonLdReplacer, this.props.space)
         }}
       />
     );
