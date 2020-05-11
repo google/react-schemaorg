@@ -4,6 +4,7 @@
     "jsx": "react",
     "outDir": "./dist/",
     "target": "es5",
+    "lib": ["ES2015"],
     "sourceMap": true,
     "declaration": true,
     "moduleResolution": "node",
