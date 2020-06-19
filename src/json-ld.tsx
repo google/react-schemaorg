@@ -17,10 +17,16 @@
 import * as React from "react";
 import { Thing, WithContext } from "schema-dts";
 
+interface JsonLdOptions {
+  /** Adds indentation, white space, and line break characters to JSON-LD output. {@link JSON.stringify} */
+  space?: string | number;
+}
+
 /**
  * Component that inline-includes a JSON-LD script where specified.
  *
- * @example
+ * For Example:
+ *
  * ```tsx
  * <JsonLd<Person>
  *   item={{
@@ -38,10 +44,8 @@ import { Thing, WithContext } from "schema-dts";
  * />
  * ```
  */
-export class JsonLd<T extends Thing> extends React.Component<{
+export class JsonLd<T extends Thing> extends React.Component<JsonLdOptions & {
   item: WithContext<T>;
-  /** Adds indentation, white space, and line break characters to JSON-LD output. {@link JSON.stringify} */
-  space?: string | number;
 }> {
   render() {
     return (
@@ -54,6 +58,32 @@ export class JsonLd<T extends Thing> extends React.Component<{
     );
   }
 }
+
+/**
+ * Produces a Helmet-style <script> prop for a given JSON-LD datum.
+ *
+ * For example:
+ *
+ * ```tsx
+ * <Helmet script={[
+ *     helmetJsonLdProp<Person>({
+ *         "@context": "https://schema.org",
+ *         "@type": "Person",
+ *         name: "Grace Hopper",
+ *         alternateName: "Grace Brewster Murray Hopper",
+ *         alumniOf: {
+ *           "@type": "CollegeOrUniversity",
+ *           name: ["Yale University", "Vassar College"]
+ *         },
+ *         knowsAbout: ["Compilers", "Computer Science"]
+ *     }),
+ * ]} />
+ * ```
+ */
+export const helmetJsonLdProp = <T extends Thing>(item: WithContext<T>, options: JsonLdOptions = {}) => ({
+  type: "application/ld+json" as const,
+  innerHTML: JSON.stringify(item, safeJsonLdReplacer, options.space),
+});
 
 type JsonValueScalar = string | boolean | number;
 type JsonValue =

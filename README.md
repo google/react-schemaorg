@@ -2,8 +2,10 @@
 
 # react-schemaorg
 
-Easily insert valid Schema.org JSON-LD using the custom `<JsonLd>` react
-component.
+Easily insert valid Schema.org JSON-LD in your React apps.
+
+This library provides `<JsonLd>` for plain React apps, and `helmetJsonLdProp()`
+for use with [`<Helmet>`](https://github.com/nfl/react-helmet).
 
 Uses [schema-dts](https://github.com/google/schema-dts) for Schema.org
 TypeScript definitions.
@@ -21,7 +23,9 @@ npm install schema-dts
 npm install react-schemaorg
 ```
 
-Then, to insert a simple JSON-LD snippet:
+### Plain React Usage
+
+To insert a simple JSON-LD snippet:
 
 ```ts
 import { Person } from "schema-dts";
@@ -42,6 +46,31 @@ export function GraceHopper() {
     }}/>;
 }
 ```
+
+### [React Helmet](https://github.com/nfl/react-helmet) Usage
+
+To set JSON-LD in React Helmet, you need to pass it to the `script={[...]}` prop
+array in the `Helmet` component:
+
+ ```tsx
+import { Person } from "schema-dts";
+import { helmetJsonLdProp } from "react-schemaorg";
+import { Helmet } from "react-helmet";
+
+ <Helmet script={[
+     helmetJsonLdProp<Person>({
+         "@context": "https://schema.org",
+         "@type": "Person",
+         name: "Grace Hopper",
+         alternateName: "Grace Brewster Murray Hopper",
+         alumniOf: {
+           "@type": "CollegeOrUniversity",
+           name: ["Yale University", "Vassar College"]
+         },
+         knowsAbout: ["Compilers", "Computer Science"]
+     }),
+ ]} />
+ ```
 
 ## Developers
 
