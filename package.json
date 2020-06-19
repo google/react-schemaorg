@@ -34,7 +34,10 @@
     "Semantic Web",
     "semantic-web",
     "Linked Data",
-    "linked-data"
+    "linked-data",
+    "react-helmet",
+    "helmet",
+    "script"
   ],
   "homepage": "https://github.com/google/react-schemaorg#readme",
   "bugs": "https://github.com/google/react-schemaorg/issues",
