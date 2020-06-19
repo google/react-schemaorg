@@ -27,23 +27,26 @@ npm install react-schemaorg
 
 To insert a simple JSON-LD snippet:
 
-```ts
+```tsx
 import { Person } from "schema-dts";
 import { JsonLd } from "react-schemaorg";
 
 export function GraceHopper() {
-  return <JsonLd<Person>
-    item={{
-      "@context": "https://schema.org",
-      "@type": "Person",
-      name: "Grace Hopper",
-      alternateName: "Grace Brewster Murray Hopper",
-      alumniOf: {
-        "@type": "CollegeOrUniversity",
-        name: ["Yale University", "Vassar College"]
-      },
-      knowsAbout: ["Compilers", "Computer Science"]
-    }}/>;
+  return (
+    <JsonLd<Person>
+      item={{
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Grace Hopper",
+        alternateName: "Grace Brewster Murray Hopper",
+        alumniOf: {
+          "@type": "CollegeOrUniversity",
+          name: ["Yale University", "Vassar College"],
+        },
+        knowsAbout: ["Compilers", "Computer Science"],
+      }}
+    />
+  );
 }
 ```
 
@@ -52,25 +55,27 @@ export function GraceHopper() {
 To set JSON-LD in React Helmet, you need to pass it to the `script={[...]}` prop
 array in the `Helmet` component:
 
- ```tsx
+```tsx
 import { Person } from "schema-dts";
 import { helmetJsonLdProp } from "react-schemaorg";
 import { Helmet } from "react-helmet";
 
- <Helmet script={[
-     helmetJsonLdProp<Person>({
-         "@context": "https://schema.org",
-         "@type": "Person",
-         name: "Grace Hopper",
-         alternateName: "Grace Brewster Murray Hopper",
-         alumniOf: {
-           "@type": "CollegeOrUniversity",
-           name: ["Yale University", "Vassar College"]
-         },
-         knowsAbout: ["Compilers", "Computer Science"]
-     }),
- ]} />
- ```
+<Helmet
+  script={[
+    helmetJsonLdProp<Person>({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: "Grace Hopper",
+      alternateName: "Grace Brewster Murray Hopper",
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: ["Yale University", "Vassar College"],
+      },
+      knowsAbout: ["Compilers", "Computer Science"],
+    }),
+  ]}
+/>;
+```
 
 ## Developers
 

@@ -44,15 +44,21 @@ interface JsonLdOptions {
  * />
  * ```
  */
-export class JsonLd<T extends Thing> extends React.Component<JsonLdOptions & {
-  item: WithContext<T>;
-}> {
+export class JsonLd<T extends Thing> extends React.Component<
+  JsonLdOptions & {
+    item: WithContext<T>;
+  }
+> {
   render() {
     return (
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(this.props.item, safeJsonLdReplacer, this.props.space)
+          __html: JSON.stringify(
+            this.props.item,
+            safeJsonLdReplacer,
+            this.props.space
+          ),
         }}
       />
     );
@@ -80,7 +86,10 @@ export class JsonLd<T extends Thing> extends React.Component<JsonLdOptions & {
  * ]} />
  * ```
  */
-export const helmetJsonLdProp = <T extends Thing>(item: WithContext<T>, options: JsonLdOptions = {}) => ({
+export const helmetJsonLdProp = <T extends Thing>(
+  item: WithContext<T>,
+  options: JsonLdOptions = {}
+) => ({
   type: "application/ld+json" as const,
   innerHTML: JSON.stringify(item, safeJsonLdReplacer, options.space),
 });
@@ -92,6 +101,20 @@ type JsonValue =
   | { [key: string]: JsonValue };
 type JsonReplacer = (_: string, value: JsonValue) => JsonValue | undefined;
 
+const ESCAPE_ENTITIES = Object.freeze({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&apos;",
+});
+const ESCAPE_REGEX = new RegExp(
+  `[${Object.keys(ESCAPE_ENTITIES).join("")}]`,
+  "g"
+);
+const ESCAPE_REPLACER = (t: string): string =>
+  ESCAPE_ENTITIES[t as keyof typeof ESCAPE_ENTITIES];
+
 /**
  * A replacer for JSON.stringify to strip JSON-LD of illegal HTML entities
  * per https://www.w3.org/TR/json-ld11/#restrictions-for-contents-of-json-ld-script-elements
@@ -99,16 +122,6 @@ type JsonReplacer = (_: string, value: JsonValue) => JsonValue | undefined;
 const safeJsonLdReplacer: JsonReplacer = (() => {
   // Replace per https://www.w3.org/TR/json-ld11/#restrictions-for-contents-of-json-ld-script-elements
   // Solution from https://stackoverflow.com/a/5499821/864313
-  const entities = Object.freeze({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&apos;"
-  });
-  const replace = (t: string): string =>
-    entities[t as keyof typeof entities] || t;
-
   return (_: string, value: JsonValue): JsonValue | undefined => {
     switch (typeof value) {
       case "object":
@@ -123,7 +136,7 @@ const safeJsonLdReplacer: JsonReplacer = (() => {
       case "bigint":
         return value; // These values are not risky.
       case "string":
-        return value.replace(/[&<>'"]/g, replace);
+        return value.replace(ESCAPE_REGEX, ESCAPE_REPLACER);
       default: {
         // We shouldn't expect other types.
         isNever(value);

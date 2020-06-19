@@ -1,16 +1,15 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "jsx": "react",
-    "outDir": "./dist/",
-    "target": "es5",
-    "lib": ["ES2015"],
-    "sourceMap": true,
-    "declaration": true,
-    "moduleResolution": "node",
-    "module": "commonjs",
-  },
-  "include": [
-    "./src/**/*"
-  ]
+  "extends": "./tsconfig-base.json",
+  "references": [
+    {
+      "path": "./src"
+    },
+    {
+      "path": "./test"
+    },
+    {
+      "path": "./type-test"
+    }
+  ],
+  "exclude": ["dist/"]
 }
