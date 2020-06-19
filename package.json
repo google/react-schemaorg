@@ -40,6 +40,13 @@
     "helmet",
     "script"
   ],
+  "scripts": {
+    "lint": "prettier --check src/",
+    "fix": "prettier --write src/",
+    "test": "npm run lint",
+    "build": "tsc --project .",
+    "prepare": "npm run build"
+  },
   "homepage": "https://github.com/google/react-schemaorg#readme",
   "bugs": "https://github.com/google/react-schemaorg/issues",
   "repository": "github:google/react-schemaorg",
