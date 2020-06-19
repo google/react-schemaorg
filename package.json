@@ -47,7 +47,7 @@
   "scripts": {
     "lint": "prettier --check src/",
     "fix": "prettier --write src/",
-    "test": "npm run lint && tsc --build type-test/",
+    "test": "npm run lint && tsc --build type-test/ && jest",
     "build": "tsc --build .",
     "prepare": "npm run build"
   },
