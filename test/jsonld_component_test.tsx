@@ -1,5 +1,5 @@
 import * as React from "react";
-import { JsonLd } from "../src/index";
+import { JsonLd } from "../src";
 import { Person } from "schema-dts";
 import { create } from "react-test-renderer";
 
