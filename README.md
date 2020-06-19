@@ -1,4 +1,4 @@
-[![react-schemaorg npm version](https://badge.fury.io/js/react-schemaorg.svg)](https://www.npmjs.com/package/react-schemaorg)
+[![react-schemaorg npm version](https://badge.fury.io/js/react-schemaorg.svg)](https://www.npmjs.com/package/react-schemaorg) [![Build Status](https://travis-ci.org/google/react-schemaorg.svg?branch=master)](https://travis-ci.org/google/react-schemaorg) [![Coverage Status](https://coveralls.io/repos/github/google/react-schemaorg/badge.svg?branch=master)](https://coveralls.io/github/google/react-schemaorg?branch=master)
 
 # react-schemaorg
 
