@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "jsx": "react",
+    "lib": ["ES2015"]
+  },
+  "include": ["./**/*"],
+  "references": [{ "path": "../tsconfig.json" }]
+}

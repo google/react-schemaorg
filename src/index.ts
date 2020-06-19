@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export { JsonLd } from "./json-ld";
+export { helmetJsonLdProp, JsonLd } from "./json-ld";

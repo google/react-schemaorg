@@ -19,7 +19,7 @@
     "prettier": "^2.0.5",
     "react": "^15.4.1",
     "schema-dts": ">=0.4.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.5"
   },
   "dependencies": {},
   "peerDependencies": {
@@ -43,8 +43,8 @@
   "scripts": {
     "lint": "prettier --check src/",
     "fix": "prettier --write src/",
-    "test": "npm run lint",
-    "build": "tsc --project .",
+    "test": "npm run lint && tsc --build type-test/",
+    "build": "tsc --build .",
     "prepare": "npm run build"
   },
   "homepage": "https://github.com/google/react-schemaorg#readme",

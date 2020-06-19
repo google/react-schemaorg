@@ -8,7 +8,9 @@
     "sourceMap": true,
     "declaration": true,
     "moduleResolution": "node",
-    "module": "commonjs"
+    "module": "commonjs",
+    "composite": true,
+    "rootDir": "./src/"
   },
   "include": ["./src/**/*"]
 }
