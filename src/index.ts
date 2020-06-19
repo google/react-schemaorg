@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export {JsonLd} from './json-ld';
+export { JsonLd } from "./json-ld";
