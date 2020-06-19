@@ -9,13 +9,15 @@
   "maintainers": [
     "Eyas Sharaiha <npm@eyas.sh> (https://eyas.sh/)"
   ],
-  "files": [
-    "dist/**/*"
-  ],
-  "types": "./dist/index.d.ts",
-  "main": "./dist/index.js",
+  "types": "./dist/src/index.d.ts",
+  "main": "./dist/src/index.js",
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-typescript": "^7.10.1",
+    "@types/jest": "^26.0.0",
     "@types/react": "^16.7.22",
+    "jest": "^26.0.1",
     "prettier": "^2.0.5",
     "react": "^15.4.1",
     "schema-dts": ">=0.4.0",
