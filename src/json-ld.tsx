@@ -44,15 +44,21 @@ interface JsonLdOptions {
  * />
  * ```
  */
-export class JsonLd<T extends Thing> extends React.Component<JsonLdOptions & {
-  item: WithContext<T>;
-}> {
+export class JsonLd<T extends Thing> extends React.Component<
+  JsonLdOptions & {
+    item: WithContext<T>;
+  }
+> {
   render() {
     return (
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(this.props.item, safeJsonLdReplacer, this.props.space)
+          __html: JSON.stringify(
+            this.props.item,
+            safeJsonLdReplacer,
+            this.props.space
+          ),
         }}
       />
     );
@@ -80,7 +86,10 @@ export class JsonLd<T extends Thing> extends React.Component<JsonLdOptions & {
  * ]} />
  * ```
  */
-export const helmetJsonLdProp = <T extends Thing>(item: WithContext<T>, options: JsonLdOptions = {}) => ({
+export const helmetJsonLdProp = <T extends Thing>(
+  item: WithContext<T>,
+  options: JsonLdOptions = {}
+) => ({
   type: "application/ld+json" as const,
   innerHTML: JSON.stringify(item, safeJsonLdReplacer, options.space),
 });
@@ -104,7 +113,7 @@ const safeJsonLdReplacer: JsonReplacer = (() => {
     "<": "&lt;",
     ">": "&gt;",
     '"': "&quot;",
-    "'": "&apos;"
+    "'": "&apos;",
   });
   const replace = (t: string): string =>
     entities[t as keyof typeof entities] || t;
