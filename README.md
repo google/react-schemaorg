@@ -50,6 +50,39 @@ export function GraceHopper() {
 }
 ```
 
+### Directly creating `<script>` tags (for `next/head` and elsewhere)
+
+Certain `<head>` management libraries require `<script>` tags to be directly
+included, rather than wrapped in a component. This includes NextJS's
+`next/head`, and `react-helmet`. With these, we can use the `jsonLdScriptProps`
+export to do the same thing:
+
+```tsx
+import { Person } from "schema-dts";
+import { helmetJsonLdProp } from "react-schemaorg";
+import Head from "next/head";
+
+export default function MyPage() {
+  return (
+    <Head>
+      <script
+        {...jsonLdScriptProps<Person>({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Grace Hopper",
+          alternateName: "Grace Brewster Murray Hopper",
+          alumniOf: {
+            "@type": "CollegeOrUniversity",
+            name: ["Yale University", "Vassar College"],
+          },
+          knowsAbout: ["Compilers", "Computer Science"],
+        })}
+      />
+    </Head>
+  );
+}
+```
+
 ### [React Helmet](https://github.com/nfl/react-helmet) Usage
 
 To set JSON-LD in React Helmet, you need to pass it to the `script={[...]}` prop

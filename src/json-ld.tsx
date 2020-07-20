@@ -50,19 +50,39 @@ export class JsonLd<T extends Thing> extends React.Component<
   }
 > {
   render() {
-    return (
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            this.props.item,
-            safeJsonLdReplacer,
-            this.props.space
-          ),
-        }}
-      />
-    );
+    return <script {...jsonLdScriptProps<T>(this.props.item, this.props)} />;
   }
+}
+
+/**
+ * Produces necessary props for a JSX <script> tag that includes JSON-LD.
+ *
+ * Can be used by spreading the props into a <script> JSX tag:
+ *
+ * ```tsx
+ * <script {...jsonLdScriptProps<Person>({
+ *   "@context": "https://schema.org",
+ *   "@type": "Person",
+ *   name: "Grace Hopper",
+ *   alternateName: "Grace Brewster Murray Hopper",
+ *   alumniOf: {
+ *     "@type": "CollegeOrUniversity",
+ *     name: ["Yale University", "Vassar College"]
+ *   },
+ *   knowsAbout: ["Compilers", "Computer Science"]
+ * })} />
+ * ```
+ */
+export function jsonLdScriptProps<T extends Thing>(
+  item: WithContext<T>,
+  options: JsonLdOptions = {}
+): JSX.IntrinsicElements["script"] {
+  return {
+    type: "application/ld+json",
+    dangerouslySetInnerHTML: {
+      __html: JSON.stringify(item, safeJsonLdReplacer, options.space),
+    },
+  };
 }
 
 /**
