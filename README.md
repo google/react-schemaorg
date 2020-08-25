@@ -59,7 +59,7 @@ export to do the same thing:
 
 ```tsx
 import { Person } from "schema-dts";
-import { helmetJsonLdProp } from "react-schemaorg";
+import { jsonLdScriptProps } from "react-schemaorg";
 import Head from "next/head";
 
 export default function MyPage() {
