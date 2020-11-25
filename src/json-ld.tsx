@@ -15,7 +15,7 @@
  */
 
 import * as React from "react";
-import { Thing, WithContext } from "schema-dts";
+import { Thing, WithContext, Graph } from "schema-dts";
 
 interface JsonLdOptions {
   /** Adds indentation, white space, and line break characters to JSON-LD output. {@link JSON.stringify} */
@@ -44,14 +44,14 @@ interface JsonLdOptions {
  * />
  * ```
  */
-export class JsonLd<T extends Thing> extends React.Component<
-  JsonLdOptions & {
-    item: WithContext<T>;
-  }
-> {
-  render() {
-    return <script {...jsonLdScriptProps<T>(this.props.item, this.props)} />;
-  }
+export function JsonLd(props: JsonLdOptions & { item: Graph }): JSX.Element;
+export function JsonLd<T extends Thing>(
+  props: JsonLdOptions & { item: WithContext<T> }
+): JSX.Element;
+export function JsonLd(
+  props: JsonLdOptions & { item: Graph | WithContext<Thing> }
+) {
+  return <script {...jsonLdScriptProps(props.item, props)} />;
 }
 
 /**
@@ -73,8 +73,16 @@ export class JsonLd<T extends Thing> extends React.Component<
  * })} />
  * ```
  */
+export function jsonLdScriptProps(
+  item: Graph,
+  options?: JsonLdOptions
+): JSX.IntrinsicElements["script"];
 export function jsonLdScriptProps<T extends Thing>(
   item: WithContext<T>,
+  options?: JsonLdOptions
+): JSX.IntrinsicElements["script"];
+export function jsonLdScriptProps(
+  item: Graph | WithContext<Thing>,
   options: JsonLdOptions = {}
 ): JSX.IntrinsicElements["script"] {
   return {
@@ -106,13 +114,32 @@ export function jsonLdScriptProps<T extends Thing>(
  * ]} />
  * ```
  */
-export const helmetJsonLdProp = <T extends Thing>(
+export function helmetJsonLdProp(
+  item: Graph,
+  options?: JsonLdOptions
+): {
+  type: "application/ld+json";
+  innerHTML: string;
+};
+export function helmetJsonLdProp<T extends Thing>(
   item: WithContext<T>,
+  options?: JsonLdOptions
+): {
+  type: "application/ld+json";
+  innerHTML: string;
+};
+export function helmetJsonLdProp(
+  item: WithContext<Thing> | Graph,
   options: JsonLdOptions = {}
-) => ({
-  type: "application/ld+json" as const,
-  innerHTML: JSON.stringify(item, safeJsonLdReplacer, options.space),
-});
+): {
+  type: "application/ld+json";
+  innerHTML: string;
+} {
+  return {
+    type: "application/ld+json" as const,
+    innerHTML: JSON.stringify(item, safeJsonLdReplacer, options.space),
+  };
+}
 
 type JsonValueScalar = string | boolean | number;
 type JsonValue =
