@@ -4,7 +4,7 @@
     "jsx": "react",
     "target": "es5",
     "lib": ["ES2015"],
-    "sourceMap": true,
+    "sourceMap": false,
     "declaration": true,
     "moduleResolution": "node",
     "module": "commonjs",
