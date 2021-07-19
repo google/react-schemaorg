@@ -2,8 +2,8 @@
   "compilerOptions": {
     "strict": true,
     "jsx": "react",
-    "target": "es5",
-    "lib": ["ES2015"],
+    "target": "es2019",
+    "lib": ["ES2019"],
     "sourceMap": false,
     "declaration": true,
     "moduleResolution": "node",
