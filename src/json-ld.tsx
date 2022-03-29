@@ -15,7 +15,7 @@
  */
 
 import * as React from "react";
-import { Thing, WithContext, Graph } from "schema-dts";
+import type { Thing, WithContext, Graph } from "schema-dts";
 
 interface JsonLdOptions {
   /** Adds indentation, white space, and line break characters to JSON-LD output. {@link JSON.stringify} */
@@ -79,6 +79,10 @@ export function jsonLdScriptProps(
 ): JSX.IntrinsicElements["script"];
 export function jsonLdScriptProps<T extends Thing>(
   item: WithContext<T>,
+  options?: JsonLdOptions
+): JSX.IntrinsicElements["script"];
+export function jsonLdScriptProps(
+  item: Graph | WithContext<Thing>,
   options?: JsonLdOptions
 ): JSX.IntrinsicElements["script"];
 export function jsonLdScriptProps(
