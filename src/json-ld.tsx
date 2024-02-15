@@ -50,6 +50,9 @@ export function JsonLd<T extends Thing>(
 ): JSX.Element;
 export function JsonLd(
   props: JsonLdOptions & { item: Graph | WithContext<Thing> }
+): JSX.Element;
+export function JsonLd(
+  props: JsonLdOptions & { item: Graph | WithContext<Thing> }
 ) {
   return <script {...jsonLdScriptProps(props.item, props)} />;
 }
@@ -133,7 +136,14 @@ export function helmetJsonLdProp<T extends Thing>(
   innerHTML: string;
 };
 export function helmetJsonLdProp(
-  item: WithContext<Thing> | Graph,
+  item: Graph | WithContext<Thing>,
+  options?: JsonLdOptions
+): {
+  type: "application/ld+json";
+  innerHTML: string;
+};
+export function helmetJsonLdProp(
+  item: Graph | WithContext<Thing>,
   options: JsonLdOptions = {}
 ): {
   type: "application/ld+json";
