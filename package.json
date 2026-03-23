@@ -22,7 +22,7 @@
     "prettier": "^3.8.1",
     "react": "^19.2.4",
     "react-test-renderer": "^19.2.4",
-    "schema-dts": "^1.1.5",
+    "schema-dts": "^2.0.0",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
