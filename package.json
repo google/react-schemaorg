@@ -53,10 +53,15 @@
     "fix": "prettier --write \"src/**/*\" \"test/**/*\" \"type-test/**/*\"",
     "test": "npm run lint && tsc --build type-test/ && jest",
     "build": "tsc --build .",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "release:exit-gate": "npx --yes google-artifactregistry-auth --repo-config=.npmrc --credential-config=$HOME/.npmrc && npm publish && VERSION=$(node -p \"require('./package.json').version\") && printf '{\"publish_all\":false,\"publishing_groups\":[{\"packages\":[{\"name\":\"react-schemaorg\",\"version\":\"%s\"}]}]}\\n' \"$VERSION\" > /tmp/react-schemaorg-manifest-$VERSION.json && gcloud storage cp /tmp/react-schemaorg-manifest-$VERSION.json gs://oss-exit-gate-prod-projects-bucket/react-schemaorg/npm/manifests/manifest-$VERSION-$(date +%s).json"
   },
   "homepage": "https://github.com/google/react-schemaorg#readme",
   "bugs": "https://github.com/google/react-schemaorg/issues",
   "repository": "github:google/react-schemaorg",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://us-npm.pkg.dev/oss-exit-gate-prod/react-schemaorg--npm/"
+  }
 }
